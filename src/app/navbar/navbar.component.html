@@ -1,0 +1,43 @@
+<nav class="navbar">
+  <div class="container navbar-container">
+    <a routerLink="/" class="navbar-logo">
+      <span class="logo-text">SpeakNCode</span>
+    </a>
+    
+    <button class="menu-toggle" (click)="toggleMenu()" [attr.aria-expanded]="isMenuOpen">
+      <span class="hamburger"></span>
+      <span class="hamburger"></span>
+      <span class="hamburger"></span>
+    </button>
+    
+    <ul class="navbar-menu" [class.open]="isMenuOpen">
+      <li class="navbar-item">
+        <a routerLink="/" (click)="navigateTo('/')" class="navbar-link">Home</a>
+      </li>
+      <li class="navbar-item">
+        <a routerLink="/about" (click)="navigateTo('/about')" class="navbar-link">About Us</a>
+      </li>
+      <li class="navbar-item">
+        <a routerLink="/software-development" (click)="navigateTo('/software-development')" class="navbar-link">Software Development</a>
+      </li>
+      <li class="navbar-item">
+        <a routerLink="/production-support" (click)="navigateTo('/production-support')" class="navbar-link">Production Support</a>
+      </li>
+      <li class="navbar-item">
+        <a routerLink="/interview-panel" (click)="navigateTo('/interview-panel')" class="navbar-link">Interview Panel</a>
+      </li>
+      <li class="navbar-item">
+        <a routerLink="/it-consultancy" (click)="navigateTo('/it-consultancy')" class="navbar-link">IT Consultancy</a>
+      </li>
+      <li class="navbar-item">
+        <a routerLink="/training" (click)="navigateTo('/training')" class="navbar-link">Training</a>
+      </li>
+      <li class="navbar-item">
+        <a routerLink="/blog" (click)="navigateTo('/blog')" class="navbar-link">Blog</a>
+      </li>
+      <li class="navbar-item">
+        <a routerLink="/contact" (click)="navigateTo('/contact')" class="navbar-link navbar-cta">Contact Us</a>
+      </li>
+    </ul>
+  </div>
+</nav>
