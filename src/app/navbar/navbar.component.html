@@ -1,13 +1,13 @@
-<nav class="navbar">
+<nav class="navbar" [class.scrolled]="isScrolled">
   <div class="container navbar-container">
     <a routerLink="/" class="navbar-logo">
       <span class="logo-text">SpeakNCode</span>
     </a>
     
-    <button class="menu-toggle" (click)="toggleMenu()" [attr.aria-expanded]="isMenuOpen">
-      <span class="hamburger"></span>
-      <span class="hamburger"></span>
-      <span class="hamburger"></span>
+    <button class="menu-toggle" (click)="toggleMenu()" [attr.aria-expanded]="isMenuOpen" aria-label="Toggle menu">
+      <span class="hamburger" [class.active]="isMenuOpen"></span>
+      <span class="hamburger" [class.active]="isMenuOpen"></span>
+      <span class="hamburger" [class.active]="isMenuOpen"></span>
     </button>
     
     <ul class="navbar-menu" [class.open]="isMenuOpen">
@@ -15,19 +15,16 @@
         <a routerLink="/" (click)="navigateTo('/')" class="navbar-link">Home</a>
       </li>
       <li class="navbar-item">
-        <a routerLink="/about" (click)="navigateTo('/about')" class="navbar-link">About Us</a>
+        <a routerLink="/about" (click)="navigateTo('/about')" class="navbar-link">About</a>
       </li>
-      <li class="navbar-item">
-        <a routerLink="/software-development" (click)="navigateTo('/software-development')" class="navbar-link">Software Development</a>
-      </li>
-      <li class="navbar-item">
-        <a routerLink="/production-support" (click)="navigateTo('/production-support')" class="navbar-link">Production Support</a>
-      </li>
-      <li class="navbar-item">
-        <a routerLink="/interview-panel" (click)="navigateTo('/interview-panel')" class="navbar-link">Interview Panel</a>
-      </li>
-      <li class="navbar-item">
-        <a routerLink="/it-consultancy" (click)="navigateTo('/it-consultancy')" class="navbar-link">IT Consultancy</a>
+      <li class="navbar-item dropdown">
+        <a routerLink="/services" (click)="navigateTo('/services')" class="navbar-link">Services</a>
+        <div class="dropdown-menu">
+          <a routerLink="/software-development" (click)="navigateTo('/software-development')" class="dropdown-item">Software Development</a>
+          <a routerLink="/production-support" (click)="navigateTo('/production-support')" class="dropdown-item">Production Support</a>
+          <a routerLink="/interview-panel" (click)="navigateTo('/interview-panel')" class="dropdown-item">Interview Panel</a>
+          <a routerLink="/it-consultancy" (click)="navigateTo('/it-consultancy')" class="dropdown-item">IT Consultancy</a>
+        </div>
       </li>
       <li class="navbar-item">
         <a routerLink="/training" (click)="navigateTo('/training')" class="navbar-link">Training</a>

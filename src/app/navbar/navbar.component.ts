@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 
 @Component({
@@ -10,8 +10,20 @@ import { Router, RouterLink } from '@angular/router';
 })
 export class NavbarComponent {
   isMenuOpen = false;
+  isScrolled = false;
 
-  constructor(private router: Router) {}
+  constructor(private router: Router) {
+    this.checkScroll();
+  }
+
+  @HostListener('window:scroll')
+  onWindowScroll(): void {
+    this.checkScroll();
+  }
+
+  checkScroll(): void {
+    this.isScrolled = window.scrollY > 50;
+  }
 
   toggleMenu(): void {
     this.isMenuOpen = !this.isMenuOpen;
