@@ -1,0 +1,120 @@
+<div class="workflow-step">
+  <div class="step-header">
+    <div class="step-number">{{ stepNumber }}</div>
+    <div class="step-info">
+      <h1>{{ stepTitle }}</h1>
+      <p>{{ stepDescription }}</p>
+    </div>
+  </div>
+
+  <div class="step-content">
+    <div class="card">
+      <div *ngIf="submitSuccess" class="alert alert-success">
+        Submitted successfully! You can proceed to the next step.
+      </div>
+
+      <div *ngIf="submitError" class="alert alert-error">
+        {{ submitError }}
+      </div>
+
+      <form (ngSubmit)="onSubmit()" class="workflow-form">
+        <div *ngFor="let section of sections" class="form-section">
+          <h3>{{ section.title }}</h3>
+          
+          <div class="form-row" [ngClass]="{'single-column': section.fields.length === 1}">
+            <div *ngFor="let field of section.fields" class="form-group">
+              <label [for]="field.name">
+                {{ field.label }}
+                <span *ngIf="field.required" class="required">*</span>
+              </label>
+              
+              <ng-container [ngSwitch]="field.type">
+                <input *ngSwitchCase="'text'" 
+                       [id]="field.name" 
+                       [name]="field.name" 
+                       [(ngModel)]="formData[field.name]" 
+                       [required]="field.required || false" 
+                       [placeholder]="field.placeholder" 
+                       class="form-input">
+                
+                <input *ngSwitchCase="'email'" 
+                       type="email"
+                       [id]="field.name" 
+                       [name]="field.name" 
+                       [(ngModel)]="formData[field.name]" 
+                       [required]="field.required || false" 
+                       [placeholder]="field.placeholder" 
+                       class="form-input">
+                
+                <input *ngSwitchCase="'tel'" 
+                       type="tel"
+                       [id]="field.name" 
+                       [name]="field.name" 
+                       [(ngModel)]="formData[field.name]" 
+                       [required]="field.required || false" 
+                       [placeholder]="field.placeholder" 
+                       class="form-input">
+                
+                <input *ngSwitchCase="'url'" 
+                       type="url"
+                       [id]="field.name" 
+                       [name]="field.name" 
+                       [(ngModel)]="formData[field.name]" 
+                       [required]="field.required || false" 
+                       [placeholder]="field.placeholder" 
+                       class="form-input">
+                
+                <input *ngSwitchCase="'number'" 
+                       type="number"
+                       [id]="field.name" 
+                       [name]="field.name" 
+                       [(ngModel)]="formData[field.name]" 
+                       [required]="field.required || false" 
+                       [placeholder]="field.placeholder" 
+                       class="form-input">
+                
+                <select *ngSwitchCase="'select'" 
+                        [id]="field.name" 
+                        [name]="field.name" 
+                        [(ngModel)]="formData[field.name]" 
+                        [required]="field.required || false" 
+                        class="form-input">
+                  <option value="">Select an option</option>
+                  <option *ngFor="let option of field.options" [value]="option.value">{{ option.label }}</option>
+                </select>
+                
+                <textarea *ngSwitchCase="'textarea'" 
+                          [id]="field.name" 
+                          [name]="field.name" 
+                          [(ngModel)]="formData[field.name]" 
+                          [required]="field.required || false" 
+                          [rows]="field.rows || 4" 
+                          [placeholder]="field.placeholder" 
+                          class="form-input"></textarea>
+                
+                <div *ngSwitchCase="'file'" class="file-upload">
+                  <input type="file" 
+                         [id]="field.name" 
+                         [name]="field.name" 
+                         (change)="onFileChange($event, field.name)" 
+                         [required]="field.required || false" 
+                         class="file-input">
+                  <label [for]="field.name" class="file-label">
+                    <span class="file-icon">File</span>
+                    <span class="file-text">{{ formData[field.name]?.name || field.placeholder || 'Choose file' }}</span>
+                  </label>
+                </div>
+              </ng-container>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <button type="submit" class="btn btn-primary" [disabled]="isSubmitting">
+            {{ isSubmitting ? 'Submitting...' : submitButtonText }}
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

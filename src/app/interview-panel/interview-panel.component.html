@@ -1,37 +1,205 @@
 <section class="section">
   <div class="container">
-    <h1 class="page-title">Interview Panel</h1>
-    <p class="page-subtitle">Expert technical interview services to help you hire the best talent</p>
+    <h1 class="page-title">Interview Panel Services</h1>
+    <p class="page-subtitle">Expert technical interview services to help you hire the best talent for your team</p>
   </div>
 </section>
 
 <section class="section bg-light">
   <div class="container">
-    <h2 class="section-title">Our Interview Services</h2>
-    <div class="services-grid">
-      <div class="card service-card">
-        <h3 class="service-title">Technical Screening</h3>
-        <p class="service-description">Initial technical assessment to filter qualified candidates</p>
+    <div class="split-layout">
+      <div class="content-section">
+        <h2 class="section-title">Why Choose Our Interview Panel?</h2>
+        <p class="section-description">
+          Our experienced engineers conduct thorough technical assessments to help you identify top talent and make informed hiring decisions.
+        </p>
+        
+        <div class="benefits-list">
+          <div class="benefit-item">
+            <div class="benefit-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                <polyline points="22 4 12 14.01 9 11.01"/>
+              </svg>
+            </div>
+            <div class="benefit-content">
+              <h4>Expert Interviewers</h4>
+              <p>Senior engineers with 10+ years of experience</p>
+            </div>
+          </div>
+
+          <div class="benefit-item">
+            <div class="benefit-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                <polyline points="22 4 12 14.01 9 11.01"/>
+              </svg>
+            </div>
+            <div class="benefit-content">
+              <h4>Comprehensive Assessment</h4>
+              <p>Technical, behavioral, and cultural fit evaluation</p>
+            </div>
+          </div>
+
+          <div class="benefit-item">
+            <div class="benefit-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                <polyline points="22 4 12 14.01 9 11.01"/>
+              </svg>
+            </div>
+            <div class="benefit-content">
+              <h4>Quick Turnaround</h4>
+              <p>Get detailed feedback within 24-48 hours</p>
+            </div>
+          </div>
+
+          <div class="benefit-item">
+            <div class="benefit-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                <polyline points="22 4 12 14.01 9 11.01"/>
+              </svg>
+            </div>
+            <div class="benefit-content">
+              <h4>Flexible Scheduling</h4>
+              <p>Interviews scheduled at your convenience</p>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="card service-card">
-        <h3 class="service-title">Deep Technical Interviews</h3>
-        <p class="service-description">In-depth technical interviews to assess core competencies</p>
+
+      <div class="form-section">
+        <div class="card">
+          <h3 class="form-title">Request Interview Services</h3>
+          
+          <div *ngIf="submitSuccess" class="alert alert-success">
+            <span>Thank you! We will contact you shortly to discuss your interview needs.</span>
+            <button (click)="dismissSuccess()" class="alert-close">&times;</button>
+          </div>
+          
+          <div *ngIf="submitError" class="alert alert-error">
+            <span>{{ submitError }}</span>
+            <button (click)="dismissError()" class="alert-close">&times;</button>
+          </div>
+          
+          <form (ngSubmit)="onSubmit()" class="interview-form">
+            <div class="form-group">
+              <label for="companyName">Company Name *</label>
+              <input type="text" id="companyName" name="companyName" [(ngModel)]="formData.companyName" required placeholder="Your Company" class="form-input">
+            </div>
+
+            <div class="form-group">
+              <label for="contactName">Contact Person *</label>
+              <input type="text" id="contactName" name="contactName" [(ngModel)]="formData.contactName" required placeholder="John Doe" class="form-input">
+            </div>
+
+            <div class="form-group">
+              <label for="email">Email Address *</label>
+              <input type="email" id="email" name="email" [(ngModel)]="formData.email" required placeholder="john@example.com" class="form-input">
+            </div>
+
+            <div class="form-group">
+              <label for="phone">Phone Number *</label>
+              <input type="tel" id="phone" name="phone" [(ngModel)]="formData.phone" required placeholder="+91 9685794540" class="form-input">
+            </div>
+
+            <div class="form-group">
+              <label for="role">Role Hiring For *</label>
+              <input type="text" id="role" name="role" [(ngModel)]="formData.role" required placeholder="Senior Software Engineer" class="form-input">
+            </div>
+
+            <div class="form-group">
+              <label for="experience">Experience Level *</label>
+              <select id="experience" name="experience" [(ngModel)]="formData.experience" required class="form-input">
+                <option value="">Select experience level</option>
+                <option value="entry">Entry Level (0-2 years)</option>
+                <option value="mid">Mid Level (2-5 years)</option>
+                <option value="senior">Senior Level (5-10 years)</option>
+                <option value="lead">Lead/Principal (10+ years)</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="domain">Technical Domain *</label>
+              <select id="domain" name="domain" [(ngModel)]="formData.domain" required class="form-input">
+                <option value="">Select domain</option>
+                <option value="frontend">Frontend Development</option>
+                <option value="backend">Backend Development</option>
+                <option value="fullstack">Full Stack Development</option>
+                <option value="devops">DevOps & Cloud</option>
+                <option value="data">Data Engineering</option>
+                <option value="mobile">Mobile Development</option>
+                <option value="qa">Quality Assurance</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="candidates">Number of Candidates *</label>
+              <input type="number" id="candidates" name="candidates" [(ngModel)]="formData.candidates" required min="1" placeholder="5" class="form-input">
+            </div>
+
+            <div class="form-group">
+              <label for="timeline">Preferred Timeline</label>
+              <select id="timeline" name="timeline" [(ngModel)]="formData.timeline" class="form-input">
+                <option value="">Select timeline</option>
+                <option value="immediate">Immediate (within 1 week)</option>
+                <option value="urgent">Urgent (1-2 weeks)</option>
+                <option value="normal">Normal (2-4 weeks)</option>
+                <option value="flexible">Flexible</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="message">Additional Requirements</label>
+              <textarea id="message" name="message" [(ngModel)]="formData.message" rows="3" placeholder="Any specific skills or requirements..." class="form-input"></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-full" [disabled]="isSubmitting">
+              {{ isSubmitting ? 'Submitting...' : 'Request Interview Services' }}
+            </button>
+          </form>
+        </div>
       </div>
-      <div class="card service-card">
-        <h3 class="service-title">System Design Reviews</h3>
-        <p class="service-description">Evaluate candidates' system design and architecture skills</p>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <h2 class="section-title">Our Interview Process</h2>
+    <div class="process-steps">
+      <div class="process-step">
+        <div class="step-number">1</div>
+        <div class="step-content">
+          <h4>Initial Consultation</h4>
+          <p>Understand your requirements and role specifications</p>
+        </div>
       </div>
-      <div class="card service-card">
-        <h3 class="service-title">Code Review Sessions</h3>
-        <p class="service-description">Live coding and code review assessments</p>
+
+      <div class="process-step">
+        <div class="step-number">2</div>
+        <div class="step-content">
+          <h4>Schedule Interviews</h4>
+          <p>Coordinate interview times with candidates</p>
+        </div>
       </div>
-      <div class="card service-card">
-        <h3 class="service-title">Cultural Fit Assessment</h3>
-        <p class="service-description">Evaluate alignment with your company culture and values</p>
+
+      <div class="process-step">
+        <div class="step-number">3</div>
+        <div class="step-content">
+          <h4>Conduct Assessment</h4>
+          <p>Technical interviews and coding challenges</p>
+        </div>
       </div>
-      <div class="card service-card">
-        <h3 class="service-title">Hiring Consultation</h3>
-        <p class="service-description">Expert advice on building your technical hiring strategy</p>
+
+      <div class="process-step">
+        <div class="step-number">4</div>
+        <div class="step-content">
+          <h4>Detailed Feedback</h4>
+          <p>Comprehensive evaluation report with recommendations</p>
+        </div>
       </div>
     </div>
   </div>
@@ -39,8 +207,8 @@
 
 <section class="section bg-dark cta-section">
   <div class="container cta-content">
-    <h2 class="cta-title">Need Help With Hiring?</h2>
-    <p class="cta-subtitle">Let's help you build your dream team</p>
-    <a routerLink="/contact" class="btn btn-primary">Get in Touch</a>
+    <h2 class="cta-title">Ready to Hire Better?</h2>
+    <p class="cta-subtitle">Let our expert interview panel help you build your dream team</p>
+    <a routerLink="/contact" class="btn btn-primary">Contact Us Today</a>
   </div>
 </section>

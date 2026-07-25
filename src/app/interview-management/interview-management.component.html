@@ -1,0 +1,28 @@
+<div class="management-container">
+  <aside class="sidebar">
+    <div class="sidebar-header">
+      <h2>Interview Management</h2>
+      <p class="sidebar-subtitle">Complete workflow tracking</p>
+    </div>
+    
+    <nav class="step-nav">
+      <div *ngFor="let step of steps" 
+           class="step-item" 
+           [class.active]="currentStep === step.id"
+           [class.completed]="currentStep > step.id"
+           (click)="navigateToStep(step)">
+        <div class="step-indicator">
+          <span *ngIf="currentStep > step.id" class="checkmark">&checkmark;</span>
+          <span *ngIf="currentStep <= step.id" class="step-number">{{ step.id }}</span>
+        </div>
+        <div class="step-info">
+          <span class="step-title">{{ step.title }}</span>
+        </div>
+      </div>
+    </nav>
+  </aside>
+
+  <main class="main-content">
+    <router-outlet></router-outlet>
+  </main>
+</div>
